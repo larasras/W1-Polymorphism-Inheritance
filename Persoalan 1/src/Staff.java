@@ -24,9 +24,21 @@ public class Staff
         staffList[4] = new Volunteer("Norm", "987 Suds Blvd.",
                 "555-8374");
         staffList[5] = new Volunteer("Cliff", "321 Duds Lane",
-                "555-7282");        
+                "555-7282");
+
+        staffList[6] = new Commission ("Laras", "Pajagalan",
+        "555-1234", "998-00-3625", 6.25, 0.2);
+        staffList[7] = new Commission ("Rasti", "Ciapus",
+        "555-0000", "933-47-5555", 9.75, 0.15);
+        
         ((Executive)staffList[0]).awardBonus (500.00);
         ((Hourly)staffList[3]).addHours (40);
+        
+        ((Commission)staffList[6]).addHours(35);
+        ((Commission)staffList[6]).addSales(400.00);
+        
+        ((Commission)staffList[7]).addHours(40);
+        ((Commission)staffList[7]).addSales(950.00);
     }
     //-----------------------------------------------------------------
     // Pays all staff members.
