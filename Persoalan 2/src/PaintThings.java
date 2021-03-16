@@ -18,12 +18,21 @@ public class PaintThings
     {
         final double COVERAGE = 350;
         Paint paint = new Paint(COVERAGE);
+
+        //Instantiate the three shapes to paint
         Rectangle deck;
         Sphere bigBall;
         Cylinder tank;
-        double deckAmt, ballAmt, tankAmt;
-        // Instantiate the three shapes to paint
+
+        deck = new Rectangle(35,20);
+        bigBall = new Sphere(15);
+        tank = new Cylinder(10,30);
+
         // Compute the amount of paint needed for each shape
+        double deckAmt = paint.amount(deck);
+        double ballAmt = paint.amount(bigBall);
+        double tankAmt = paint.amount(tank);
+
         // Print the amount of paint for each.
         DecimalFormat fmt = new DecimalFormat("0.#");
         System.out.println ("\nNumber of gallons of paint needed...");
