@@ -105,7 +105,7 @@ public class IntegerListTest
         System.out.println(" ====");
         System.out.println("0: Quit");
         System.out.println("1: Create a new list (** do this first!! **)");
-        System.out.println("2: Replace first value");
+        System.out.println("2: Replace a value");
         System.out.println("3: Replace all value");
         System.out.println("4: Sort ascending list (increasing order use selection sort)");
         System.out.println("5: Sort descending list (decreasing order use selection sort)");

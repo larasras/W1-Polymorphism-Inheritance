@@ -58,12 +58,14 @@ public class IntegerList
         }
     }
 
-    public void replaceAll (int oldVal, int newVal) {
-        int loc = search(oldVal);
-
-        while(loc != -1) {
-            replaceFirst(oldVal,newVal);
-            loc = search(oldVal);
+    void replaceAll(int oldVal, int newVal) {
+        int location = -1;
+        
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] == oldVal) {
+                location = i;
+                list[location] = newVal;
+            }
         }
     }
 
@@ -96,12 +98,12 @@ public class IntegerList
 
         for (int i=0; i < list.length-1; i++) 
         { 
-            //find smallest element in list starting at location i 
+            //find biggest element in list starting at location i 
             maxIndex = i; 
             for (int j = i+1; j < list.length; j++) 
                 if (list[j] > list[maxIndex]) 
                     maxIndex = j; 
-            //swap list[i] with smallest element 
+            //swap list[i] with biggest element 
             int temp = list[i]; 
             list[i] = list[maxIndex]; 
             list[maxIndex] = temp; 
