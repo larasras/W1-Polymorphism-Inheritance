@@ -19,6 +19,8 @@ public class SpeedControlPanel extends JPanel
     private Circle bouncingBall; // the object that moves
     private Timer timer;
     private int moveX, moveY; // increment to move each time
+    private  JSlider sJSlider;
+    private JPanel sJPanel;
 
     // ---------------------------------------------
     // Sets up the panel, including the timer
@@ -27,6 +29,34 @@ public class SpeedControlPanel extends JPanel
     public SpeedControlPanel ()
     {
         timer = new Timer(30, new ReboundListener());
+
+        // Instantiate sJSlider to be a JSlider that is horizontal
+        // with values ranging from 0 to 200, initially set to 30.
+        sJSlider = new JSlider(JSlider.HORIZONTAL, 0, 200, 300);
+
+        // Set the major tick spacing to 40 and the minor tick spacing to 10.
+        SlideListener sListener = new SlideListener();
+        sJSlider.setMajorTickSpacing(40);
+        sJSlider.setMinorTickSpacing(10);
+
+        //Set paint ticks and paint labels to true and the X alignment to left.
+        sJSlider.setPaintTicks(true);
+        sJSlider.setPaintLabels(true);
+        sJSlider.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Add the change listener to the JSlider object.
+        sJSlider.addChangeListener(sListener);
+
+        // Create a label ("Timer Delay") for the slider and align it to the left
+        JLabel sJLabel = new JLabel("Timer Delay");
+        sJLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Create a JPanel object and add the label and slider to it
+        // then add  panel to the SOUTH of the main panel
+        sJPanel = new JPanel();
+        sJPanel.add(sJLabel);
+        sJPanel.add(sJSlider);
+        this.add(sJPanel, "SOUTH");
         this.setLayout (new BorderLayout());
         bouncingBall = new Circle(BALL_SIZE);
         moveX = moveY = 5;
@@ -75,9 +105,12 @@ public class SpeedControlPanel extends JPanel
         // Called when the state of the slider has changed;
         // resets the delay on the timer.
         // -------------------------------------------------
+        
+        // Determine the value of timer delay
+        // with the method setDelay (int delay) in the Timer class.
         public void stateChanged (ChangeEvent event)
         {
-            
+            timer.setDelay(sJSlider.getValue());
         }
     }
 }
