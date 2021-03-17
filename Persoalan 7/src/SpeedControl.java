@@ -17,7 +17,7 @@ public class SpeedControl
     {
         JFrame frame = new JFrame ("Bouncing Balls");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane.add(new SpeedControlPanel ());
+        frame.getContentPane.add(new SpeedControlPanel());
         frame.pack();
         frame.setVisible(true);
     }

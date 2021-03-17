@@ -84,6 +84,7 @@ public class SpeedControlPanel extends JPanel
         // ----------------------------------------------------
         public void actionPerformed(ActionEvent action)
         {
+            int slidePanelHt = sJPanel.getSize().height;
             bouncingBall.move(moveX, moveY);
 
             // change direction if ball hits a side
@@ -91,7 +92,7 @@ public class SpeedControlPanel extends JPanel
             int y = bouncingBall.getY();
             if (x < 0 || x >= WIDTH - BALL_SIZE)
                 moveX = moveX * -1;
-            if (y <= 0 || y >= HEIGHT - BALL_SIZE)
+            if (y <= 0 || y >= HEIGHT - slidePanelHt - BALL_SIZE)
                 moveY = moveY * -1;
             repaint();
         }
