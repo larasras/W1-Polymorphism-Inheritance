@@ -13,7 +13,6 @@ public class Circle
     private int radius; // radius of the circle
     private Color color; // color of the circle
     static Random generator = new Random();
-
     //---------------------------------------------------------
     // Creates a random circle with properties in ranges given:
     // -- radius 25..74

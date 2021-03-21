@@ -1,11 +1,3 @@
-// ******************************************************************
-// SpeedControlPanel.java
-//
-// The panel for the bouncing ball. Similar to
-// ReboundPanel.java in Listing 8.16 in the text, except a circle
-// rather than a happy face is rebounding off the edges of the
-// window.
-// ******************************************************************
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,29 +5,30 @@ import javax.swing.event.*;
 
 public class SpeedControlPanel extends JPanel
 {
+
     private final int WIDTH = 600;
     private final int HEIGHT = 400;
     private final int BALL_SIZE = 50;
     private Circle bouncingBall; // the object that moves
     private Timer timer;
     private int moveX, moveY; // increment to move each time
-    private  JSlider sJSlider;
+    private JSlider sJSlider;
     private JPanel sJPanel;
-
+    
     // ---------------------------------------------
     // Sets up the panel, including the timer
     // for the animation
     // ---------------------------------------------
-    public SpeedControlPanel ()
+    public SpeedControlPanel()
     {
         timer = new Timer(30, new ReboundListener());
 
         // Instantiate sJSlider to be a JSlider that is horizontal
         // with values ranging from 0 to 200, initially set to 30.
-        sJSlider = new JSlider(JSlider.HORIZONTAL, 0, 200, 300);
+        sJSlider = new JSlider(JSlider.HORIZONTAL, 0, 200, 30);
 
         // Set the major tick spacing to 40 and the minor tick spacing to 10.
-        SlideListener sListener = new SlideListener();
+        SlideListener slistener = new SlideListener();
         sJSlider.setMajorTickSpacing(40);
         sJSlider.setMinorTickSpacing(10);
 
@@ -45,7 +38,7 @@ public class SpeedControlPanel extends JPanel
         sJSlider.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // Add the change listener to the JSlider object.
-        sJSlider.addChangeListener(sListener);
+        sJSlider.addChangeListener(slistener);
 
         // Create a label ("Timer Delay") for the slider and align it to the left
         JLabel sJLabel = new JLabel("Timer Delay");
@@ -56,21 +49,22 @@ public class SpeedControlPanel extends JPanel
         sJPanel = new JPanel();
         sJPanel.add(sJLabel);
         sJPanel.add(sJSlider);
-        this.add(sJPanel, "SOUTH");
-        this.setLayout (new BorderLayout());
+        this.setLayout(new BorderLayout());
         bouncingBall = new Circle(BALL_SIZE);
         moveX = moveY = 5;
         // Set up a slider object here
-        setPreferredSize (new Dimension (WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.black);
+        this.add(sJPanel, "South");
         timer.start();
     }
+    
     // --------------------
     // Draw the ball
     // --------------------
-    public void paintComponent (Graphics page)
+    public void paintComponent(Graphics page)
     {
-        super.paintComponent (page);
+        super.paintComponent(page);
         bouncingBall.draw(page);
     }
     // ***************************************************
@@ -90,26 +84,28 @@ public class SpeedControlPanel extends JPanel
             // change direction if ball hits a side
             int x = bouncingBall.getX();
             int y = bouncingBall.getY();
-            if (x < 0 || x >= WIDTH - BALL_SIZE)
+            if (x < 0 || x >= WIDTH - BALL_SIZE) {
                 moveX = moveX * -1;
-            if (y <= 0 || y >= HEIGHT - slidePanelHt - BALL_SIZE)
+            }
+            if (y <= 0 || y >= HEIGHT - slidePanelHt - BALL_SIZE) {
                 moveY = moveY * -1;
+            }
             repaint();
         }
     }
     // *****************************************************
-    // A change listener for the slider.
+    // A change listener for the sJSlider.
     // *****************************************************
     private class SlideListener implements ChangeListener
     {
         // -------------------------------------------------
-        // Called when the state of the slider has changed;
+        // Called when the state of the sJSlider has changed;
         // resets the delay on the timer.
         // -------------------------------------------------
-        
+
         // Determine the value of timer delay
         // with the method setDelay (int delay) in the Timer class.
-        public void stateChanged (ChangeEvent event)
+        public void stateChanged(ChangeEvent event)
         {
             timer.setDelay(sJSlider.getValue());
         }
